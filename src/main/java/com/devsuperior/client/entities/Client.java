@@ -1,11 +1,19 @@
 package com.devsuperior.client.entities;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name="tb_client")
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 175)
     private String name;
+    @Column(length = 15)
     private String cpf;
     private Double income;
     private LocalDate birthDate;
