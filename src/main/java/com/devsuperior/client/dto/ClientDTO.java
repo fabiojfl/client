@@ -2,14 +2,26 @@ package com.devsuperior.client.dto;
 
 import com.devsuperior.client.entities.Client;
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 3, max = 175, message = "Nome precisar ter de 3 a 175 caracteres")
+    @NotBlank(message = "Campo obrigatório")
     private String name;
+    @NotBlank(message = "Campo obrigatório")
     private String cpf;
+    @Positive(message = "Valor vazio ou negativo. Por favor, informe os rendimentos do cliente")
     private Double income;
     private LocalDate birthDate;
     private Integer children;

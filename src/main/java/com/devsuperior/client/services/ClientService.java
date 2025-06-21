@@ -25,11 +25,9 @@ public class ClientService {
 
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id){
-        Client client = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado."));
-        return new ClientDTO(client);
+            Client client = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente inexistente."));
+            return new ClientDTO(client);
     }
-
-
 
     @Transactional(readOnly = true)
     public Page<ClientDTO> findAll(Pageable pageable){
@@ -39,10 +37,10 @@ public class ClientService {
 
     @Transactional
     public ClientDTO insert(ClientDTO dto){
-        Client entity = new Client();
-        copyDtoToEntity(dto, entity);
-        entity = repository.save(entity);
-        return new ClientDTO(entity);
+            Client entity = new Client();
+            copyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+            return new ClientDTO(entity);
     }
 
     @Transactional
